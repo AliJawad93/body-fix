@@ -1,3 +1,4 @@
+import 'package:body_fix2/body%20fix/presentation/exercises/exercises.dart';
 import 'package:body_fix2/body%20fix/presentation/food/f1.dart';
 import 'package:body_fix2/body%20fix/presentation/food/f2.dart';
 import 'package:body_fix2/body%20fix/presentation/food/f3.dart';
@@ -16,7 +17,7 @@ class MainPageController extends GetxController {
 
   Widget getPages() {
     return Stack(
-        children: [BMR(), Food1(), Food2(), Food3(), Food()]
+        children: [BMR(), Food(), Exercises(), Food3(), Food()]
             .asMap()
             .map((index, screen) {
               return MapEntry(
