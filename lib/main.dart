@@ -1,5 +1,8 @@
 import 'package:body_fix2/body%20fix/core/utils/theme/light_theme.dart';
+import 'package:body_fix2/body%20fix/presentation/exercises/admin/add_exercises.dart';
+import 'package:body_fix2/body%20fix/presentation/food/admin/add_food.dart';
 import 'package:body_fix2/body%20fix/presentation/home/home.dart';
+import 'package:body_fix2/body%20fix/presentation/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: LightTheme.getLightTheme(),
-      home: Home(),
+      home: OnBoarding(),
     );
   }
 }

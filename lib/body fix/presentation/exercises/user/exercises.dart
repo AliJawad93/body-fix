@@ -3,7 +3,8 @@ import 'dart:math';
 import 'package:body_fix2/body%20fix/controller/Exercises_controller.dart';
 import 'package:body_fix2/body%20fix/core/utils/colors.dart';
 import 'package:body_fix2/body%20fix/models/exercises_model.dart';
-import 'package:body_fix2/body%20fix/presentation/exercises/widgets/card_exercises.dart';
+import 'package:body_fix2/body%20fix/presentation/exercises/admin/add_exercises.dart';
+import 'package:body_fix2/body%20fix/presentation/exercises/user/widgets/card_exercises.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_body_cont.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,11 @@ class Exercises extends StatelessWidget {
     return CustomScaffold(
         appBar: AppBar(
           title: const Text("Exercises"),
+          leading: IconButton(
+              onPressed: () {
+                Get.to(() => AddExercises());
+              },
+              icon: Icon(Icons.add)),
           actions: [
             IconButton(onPressed: () {}, icon: const Icon(Icons.search))
           ],

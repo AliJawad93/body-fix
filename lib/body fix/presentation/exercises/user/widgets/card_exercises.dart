@@ -1,18 +1,17 @@
 import 'package:body_fix2/body%20fix/core/utils/colors.dart';
 import 'package:body_fix2/body%20fix/core/utils/string.dart';
+import 'package:body_fix2/body%20fix/models/exercises_model.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_container.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../models/food_model.dart';
+class CardExercises extends StatelessWidget {
+  ExercisesModel exercisesModel;
 
-class CardFood extends StatelessWidget {
-  FoodModel foodModel;
-
-  CardFood({
+  CardExercises({
     super.key,
-    required this.foodModel,
+    required this.exercisesModel,
   });
 
   @override
@@ -29,13 +28,13 @@ class CardFood extends StatelessWidget {
               width: 70,
               child: Center(
                 child: CachedNetworkImage(
-                  imageUrl: foodModel.urlImage,
-                  placeholder: (context, url) => Icon(
-                    Icons.local_dining,
+                  imageUrl: exercisesModel.urlImage,
+                  placeholder: (context, url) => const Icon(
+                    Icons.fitness_center,
                     color: AppColors.darkGray,
                     size: 35,
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),
@@ -48,43 +47,39 @@ class CardFood extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    foodModel.title,
+                    exercisesModel.title,
                     style:
                         const TextStyle(fontSize: 18, color: AppColors.black),
                   ),
                   Text(
-                    "Type: ${foodModel.type}",
+                    "Type: ${exercisesModel.type}",
                     style: const TextStyle(
                         fontSize: 15, color: AppColors.darkGray),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "${foodModel.calories}\n${AppString.titleCalories}",
+                        "Burn: ",
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                             fontSize: 14, color: AppColors.black),
                       ),
                       Text(
-                        "${foodModel.fat}\n${AppString.titleFat}",
+                        "${exercisesModel.calories}\n${AppString.titleCalories}",
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                             fontSize: 14, color: AppColors.black),
                       ),
                       Text(
-                        "${foodModel.carbs}\n${AppString.titleCarbs}",
+                        "${exercisesModel.time}\ntime",
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                             fontSize: 14, color: AppColors.black),
                       ),
-                      Text(
-                        "${foodModel.protein}\n${AppString.titleProtein}",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontSize: 14, color: AppColors.black),
-                      ),
+                      SizedBox(
+                        width: Get.width * 0.1,
+                      )
                     ],
                   )
                 ],

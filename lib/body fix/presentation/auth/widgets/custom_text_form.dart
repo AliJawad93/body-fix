@@ -10,7 +10,7 @@ class CustomTextForm extends StatelessWidget {
   bool obscureText;
   void Function()? onPressedSuffixIcon;
   bool showVisibilityIcon;
-  Widget prefixIcon;
+  Widget? prefixIcon;
   CustomTextForm({
     Key? key,
     required this.hintText,
@@ -18,7 +18,7 @@ class CustomTextForm extends StatelessWidget {
     this.obscureText = false,
     this.onPressedSuffixIcon,
     this.showVisibilityIcon = false,
-    required this.prefixIcon,
+    this.prefixIcon,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

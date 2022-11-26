@@ -31,7 +31,7 @@ class CustomScaffold extends StatelessWidget {
                 topRight: Radius.circular(60.0),
               ),
             ),
-            child: body,
+            child: Align(alignment: Alignment.topLeft, child: body),
           )
         ],
       ),

@@ -2,7 +2,8 @@ import 'package:body_fix2/body%20fix/controller/food_controller.dart';
 import 'package:body_fix2/body%20fix/core/utils/colors.dart';
 import 'package:body_fix2/body%20fix/core/utils/images_path.dart';
 import 'package:body_fix2/body%20fix/models/food_model.dart';
-import 'package:body_fix2/body%20fix/presentation/food/widgets/card_food.dart';
+import 'package:body_fix2/body%20fix/presentation/food/admin/add_food.dart';
+import 'package:body_fix2/body%20fix/presentation/food/user/widgets/card_food.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_body_cont.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_container.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,11 @@ class Food extends StatelessWidget {
     return CustomScaffold(
         appBar: AppBar(
           title: Text("Food"),
+          leading: IconButton(
+              onPressed: () {
+                Get.to(() => AddFood());
+              },
+              icon: Icon(Icons.add)),
           actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
         ),
         body: Padding(

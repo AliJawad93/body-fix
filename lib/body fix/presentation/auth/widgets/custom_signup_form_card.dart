@@ -3,6 +3,7 @@ import 'package:body_fix2/body%20fix/controller/signup_controller.dart';
 import 'package:body_fix2/body%20fix/core/utils/colors.dart';
 import 'package:body_fix2/body%20fix/presentation/auth/login.dart';
 import 'package:body_fix2/body%20fix/presentation/auth/widgets/custom_text_form.dart';
+import 'package:body_fix2/body%20fix/presentation/home/home.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_container.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +62,7 @@ class CustomSignUpFormCard extends StatelessWidget {
                   print(" NO");
                   return;
                 }
+                Get.to(() => Home());
 
                 print("YES");
               },
