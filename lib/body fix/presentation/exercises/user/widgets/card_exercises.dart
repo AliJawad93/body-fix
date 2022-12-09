@@ -34,7 +34,11 @@ class CardExercises extends StatelessWidget {
                     color: AppColors.darkGray,
                     size: 35,
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  errorWidget: (context, url, error) => const Icon(
+                    Icons.fitness_center,
+                    color: AppColors.darkGray,
+                    size: 35,
+                  ),
                 ),
               ),
             ),

@@ -18,14 +18,14 @@ class Profile extends StatelessWidget {
       body: Center(
         child: Container(
           margin: EdgeInsets.symmetric(
-              horizontal: sqrt((Get.height + Get.width) * 2)),
+              horizontal: sqrt((Get.height + Get.width) * 0.2)),
           height: Get.height * 0.7,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               CustomContainer(
-                  height: sqrt((Get.height + Get.width) * 6),
-                  width: sqrt((Get.height + Get.width) * 6),
+                  height: sqrt((Get.height + Get.width) * 7),
+                  width: sqrt((Get.height + Get.width) * 7),
                   borderRadius: 100,
                   child: const Text("")),
               const Text(

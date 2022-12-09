@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: LightTheme.getLightTheme(),
-      home: OnBoarding(),
+      home: Home(),
     );
   }
 }

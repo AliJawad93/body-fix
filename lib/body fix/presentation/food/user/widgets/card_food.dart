@@ -34,7 +34,11 @@ class CardFood extends StatelessWidget {
                     color: AppColors.darkGray,
                     size: 35,
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  errorWidget: (context, url, error) => Icon(
+                    Icons.local_dining,
+                    color: AppColors.darkGray,
+                    size: 35,
+                  ),
                 ),
               ),
             ),

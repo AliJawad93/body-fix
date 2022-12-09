@@ -2,7 +2,6 @@ import 'package:body_fix2/body%20fix/presentation/exercises/user/exercises.dart'
 import 'package:body_fix2/body%20fix/presentation/food/user/food.dart';
 import 'package:body_fix2/body%20fix/presentation/profile/profile.dart';
 import 'package:body_fix2/body%20fix/presentation/steps_count/steps.dart';
-import 'package:body_fix2/body%20fix/presentation/steps_count/steps.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

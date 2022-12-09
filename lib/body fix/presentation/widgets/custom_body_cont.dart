@@ -3,13 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomScaffold extends StatelessWidget {
-  CustomScaffold({this.appBar, this.body, super.key});
+  CustomScaffold(
+      {this.resizeToAvoidBottomInset = true,
+      this.appBar,
+      this.body,
+      super.key});
   Widget? body;
   PreferredSizeWidget? appBar;
+  bool resizeToAvoidBottomInset;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       appBar: appBar,
       body: Stack(
         children: [

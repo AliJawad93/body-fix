@@ -21,8 +21,7 @@ class CardItemProfile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: CustomContainer(
-        padding: const EdgeInsets.all(10),
-        height: sqrt((Get.height + Get.width) * 3.5),
+        padding: EdgeInsets.all(sqrt(Get.height + Get.width) * 0.8),
         borderRadius: 10,
         child: Row(
           children: [
