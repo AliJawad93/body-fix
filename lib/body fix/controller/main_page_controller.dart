@@ -1,7 +1,8 @@
 import 'package:body_fix2/body%20fix/presentation/exercises/user/exercises.dart';
-import 'package:body_fix2/body%20fix/presentation/food/user/f3.dart';
 import 'package:body_fix2/body%20fix/presentation/food/user/food.dart';
 import 'package:body_fix2/body%20fix/presentation/profile/profile.dart';
+import 'package:body_fix2/body%20fix/presentation/steps_count/steps.dart';
+import 'package:body_fix2/body%20fix/presentation/steps_count/steps.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +17,7 @@ class MainPageController extends GetxController {
 
   Widget getPages() {
     return Stack(
-        children: [BMR(), Food(), Exercises(), Food3(), Profile()]
+        children: [BMR(), Food(), Exercises(), Steps(), Profile()]
             .asMap()
             .map((index, screen) {
               return MapEntry(
