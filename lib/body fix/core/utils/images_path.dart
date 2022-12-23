@@ -12,4 +12,5 @@ class AppImagePath {
   static const String protein = "$_path/protein.png";
   static const String starch = "$_path/starch.png";
   static const String fat = "$_path/fat.png";
+  static const String manSad = "$_path/man_sad.json";
 }

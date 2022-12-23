@@ -37,9 +37,10 @@ class _AddExercisesState extends State<AddExercises> {
               onPressed: () {},
               width: Get.width * 0.15,
               height: Get.height * 0.05,
-              child: const Text(
+              child: Text(
                 "add",
-                style: TextStyle(color: AppColors.primary),
+                style: TextStyle(
+                    color: AppColors.primary, fontSize: Get.width * 0.03),
               ),
             ),
           )
@@ -75,10 +76,11 @@ class _AddExercisesState extends State<AddExercises> {
                   CustomElevatedButton(
                     backgroundColor: AppColors.primary,
                     onPressed: () {},
-                    width: Get.width * 0.3,
-                    child: const Text(
+                    width: Get.width * 0.2,
+                    child: Text(
                       "Select",
-                      style: TextStyle(color: AppColors.white),
+                      style: TextStyle(
+                          color: AppColors.white, fontSize: Get.width * 0.03),
                     ),
                   ),
                 ],

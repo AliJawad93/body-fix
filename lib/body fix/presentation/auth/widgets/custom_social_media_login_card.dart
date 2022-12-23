@@ -1,3 +1,4 @@
+import 'package:body_fix2/body%20fix/core/utils/colors.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,7 +33,8 @@ class CustomSocialMediaCard extends StatelessWidget {
             ),
             Text(
               title,
-              style: Theme.of(context).textTheme.titleMedium,
+              style:
+                  TextStyle(fontSize: Get.width * 0.04, color: AppColors.black),
             ),
           ],
         ),

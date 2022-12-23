@@ -23,8 +23,8 @@ class CustomIconCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomElevatedButton(
-        height: sqrt(Get.width + Get.height) * 4.5,
-        width: sqrt(Get.width + Get.height) * 4.5,
+        height: sqrt(Get.width + Get.height) * 4,
+        width: sqrt(Get.width + Get.height) * 4,
         backgroundColor: isMale ? AppColors.primary : AppColors.white,
         onPressed: onPressed,
         child: Column(

@@ -38,16 +38,17 @@ class _LoginState extends State<Login> {
               ),
               CustomLoginFormCard(),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     height: 1.2,
-                    width: Get.width * 0.31,
+                    width: Get.width * 0.25,
                     color: AppColors.white,
                   ),
                   const Text("      Login With      "),
                   Container(
                     height: 1.2,
-                    width: Get.width * 0.32,
+                    width: Get.width * 0.25,
                     color: AppColors.white,
                   ),
                 ],

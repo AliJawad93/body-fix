@@ -39,16 +39,17 @@ class _SignUpState extends State<SignUp> {
               ),
               CustomSignUpFormCard(),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     height: 1.2,
-                    width: Get.width * 0.30,
+                    width: Get.width * 0.25,
                     color: AppColors.white,
                   ),
                   const Text("      SignUp With      "),
                   Container(
                     height: 1.2,
-                    width: Get.width * 0.30,
+                    width: Get.width * 0.25,
                     color: AppColors.white,
                   ),
                 ],

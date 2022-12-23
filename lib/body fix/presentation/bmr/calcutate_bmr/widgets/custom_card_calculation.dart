@@ -21,8 +21,8 @@ class CustomCardCalaulation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
-      height: sqrt(Get.width + Get.height) * 4.5,
-      width: sqrt(Get.width + Get.height) * 4.5,
+      height: sqrt(Get.width + Get.height) * 4,
+      width: sqrt(Get.width + Get.height) * 4,
       borderRadius: 10,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

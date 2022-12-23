@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+import 'body fix/presentation/steps_count/steps.dart';
+
+void main() async {
   runApp(const MyApp());
 }
 
