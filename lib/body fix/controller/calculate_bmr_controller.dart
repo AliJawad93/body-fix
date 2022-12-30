@@ -1,4 +1,5 @@
 import 'package:body_fix2/body%20fix/core/utils/string.dart';
+import 'package:body_fix2/body%20fix/services/shareprefs_keys.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,10 +22,10 @@ class CalculateBMRController extends GetxController {
 
   onInitPrefs() async {
     prefs = await SharedPreferences.getInstance();
-    _calories = getPrefsDouble(AppString.titleCalories).toString();
-    _fat = getPrefsDouble(AppString.titleFat).toString();
-    _carbs = getPrefsDouble(AppString.titleCarbs).toString();
-    _protein = getPrefsDouble(AppString.titleProtein).toString();
+    _calories = getPrefsDouble(SharePrefsKeys.calories).toString();
+    _fat = getPrefsDouble(SharePrefsKeys.fat).toString();
+    _carbs = getPrefsDouble(SharePrefsKeys.carbs).toString();
+    _protein = getPrefsDouble(SharePrefsKeys.protein).toString();
     update();
   }
 

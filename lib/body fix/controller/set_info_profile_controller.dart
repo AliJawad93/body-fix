@@ -8,6 +8,13 @@ class SetInfoProfileController extends GetxController {
   TextEditingController _name = TextEditingController();
   String? _birthday;
   PlatformFile? _platformFile;
+  bool _isloading = false;
+
+  void changeIsloading(bool status) {
+    _isloading = status;
+    update();
+  }
+
   void _setBirthday(String birthday) {
     _birthday = birthday;
     update();
@@ -33,4 +40,5 @@ class SetInfoProfileController extends GetxController {
   PlatformFile? get getPlatformFile => _platformFile;
   String? get getBirthday => _birthday;
   TextEditingController get getNameController => _name;
+  bool get getIsloading => _isloading;
 }

@@ -1,6 +1,8 @@
 import 'package:body_fix2/body%20fix/core/utils/images_path.dart';
 import 'package:body_fix2/body%20fix/core/utils/string.dart';
 import 'package:body_fix2/body%20fix/models/onboarding_model.dart';
+import 'package:body_fix2/body%20fix/services/shareprefs_keys.dart';
+import 'package:body_fix2/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -38,6 +40,7 @@ class OnboardingController extends GetxController {
         curve: Curves.linear,
       );
     } else {
+      prefs.setBool(SharePrefsKeys.onboarding, false);
       Get.off(() => Login());
     }
     update();

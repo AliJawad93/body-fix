@@ -1,9 +1,11 @@
 import 'package:body_fix2/body%20fix/controller/login_controller.dart';
 import 'package:body_fix2/body%20fix/controller/signup_controller.dart';
 import 'package:body_fix2/body%20fix/core/utils/colors.dart';
+import 'package:body_fix2/body%20fix/data/auth.dart';
 import 'package:body_fix2/body%20fix/presentation/auth/login.dart';
 import 'package:body_fix2/body%20fix/presentation/auth/widgets/custom_text_form.dart';
 import 'package:body_fix2/body%20fix/presentation/home/home.dart';
+import 'package:body_fix2/body%20fix/presentation/verify/verify.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_container.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,7 @@ import 'package:get/get.dart';
 class CustomSignUpFormCard extends StatelessWidget {
   CustomSignUpFormCard({Key? key}) : super(key: key);
 
-  SignUpController signUpController = Get.put(SignUpController());
+  SignUpController signUpController = Get.find();
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
@@ -56,15 +58,22 @@ class CustomSignUpFormCard extends StatelessWidget {
           }),
           CustomElevatedButton(
               margin: const EdgeInsets.symmetric(vertical: 10),
-              onPressed: () {
+              onPressed: () async {
                 bool iss = signUpController.checkPasswordEqualConfirmPassword();
                 if (!iss) {
-                  print(" NO");
                   return;
                 }
-                Get.to(() => Home());
-
-                print("YES");
+                try {
+                  signUpController.changeIsloading(true);
+                  await FirebaseAuthentication.signUp(
+                      email: signUpController.getEmail.text,
+                      password: signUpController.getPassword.text);
+                  signUpController.changeIsloading(false);
+                  Get.offAll(() => Verify());
+                } catch (e) {
+                  Get.snackbar('Error', e.toString(),
+                      backgroundColor: AppColors.white);
+                }
               },
               child: const Text("Sign Up"))
         ],

@@ -6,6 +6,8 @@ import 'package:body_fix2/body%20fix/presentation/auth/widgets/custom_text_form.
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_body_cont.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_container.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_elevated_button.dart';
+import 'package:body_fix2/body%20fix/services/shareprefs_keys.dart';
+import 'package:body_fix2/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -22,12 +24,13 @@ class Steps extends StatefulWidget {
 }
 
 class _StepsState extends State<Steps> {
-  TextEditingController goal = TextEditingController();
+  TextEditingController textGoal = TextEditingController();
   int value = 50;
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
   int _steps = 1;
   bool isPermissioned = true;
+  int goal = 100;
   @override
   void initState() {
     super.initState();
@@ -54,9 +57,17 @@ class _StepsState extends State<Steps> {
     if (!mounted) return;
   }
 
+  initGoal() {
+    if (prefs.getInt(SharePrefsKeys.goal) != null) {
+      goal = prefs.getInt(SharePrefsKeys.goal)!;
+      return;
+    }
+
+    prefs.setInt(SharePrefsKeys.goal, 100);
+  }
+
   @override
   Widget build(BuildContext context) {
-    goal.text = goal.text.isEmpty ? "100" : goal.text;
     return CustomScaffold(
       appBar: AppBar(
         title: const Text("Steps Count"),
@@ -73,13 +84,16 @@ class _StepsState extends State<Steps> {
                       confirm: CustomElevatedButton(
                           onPressed: () async {
                             final prefs = await SharedPreferences.getInstance();
-                            prefs.setString("goal", goal.text);
+
+                            prefs.setInt(
+                                SharePrefsKeys.goal, int.parse(textGoal.text));
+                            goal = int.parse(textGoal.text);
                             setState(() {});
                             Get.back();
                           },
                           child: const Text("confirm")),
-                      content:
-                          CustomTextForm(hintText: "Goal", controller: goal),
+                      content: CustomTextForm(
+                          hintText: "Goal", controller: textGoal),
                     );
                   },
                   icon: const Icon(Icons.wifi_tethering))
@@ -111,9 +125,7 @@ class _StepsState extends State<Steps> {
                         animationDuration: 500,
                         radius: 100,
                         lineWidth: 25,
-                        percent: _steps > int.parse(goal.text)
-                            ? int.parse(goal.text) * 0.01
-                            : (_steps / int.parse(goal.text)),
+                        percent: _steps > goal ? goal * 0.01 : (_steps / goal),
                         progressColor: AppColors.primary,
                         backgroundColor: AppColors.primaryLight,
                         circularStrokeCap: CircularStrokeCap.round,
@@ -126,7 +138,7 @@ class _StepsState extends State<Steps> {
                               color: AppColors.black,
                             ),
                             Text(
-                              "${((_steps / int.parse(goal.text)) * 100).toStringAsFixed(0)}%",
+                              "${((_steps / goal) * 100).toStringAsFixed(0)}%",
                               style: const TextStyle(color: AppColors.black),
                             ),
                           ],
@@ -154,7 +166,7 @@ class _StepsState extends State<Steps> {
                                   color: AppColors.primary,
                                 ),
                                 Text(
-                                  " ${goal.text} ( ${((_steps / int.parse(goal.text)) * 100).toStringAsFixed(0)} % )",
+                                  " ${goal} ( steps: ${_steps} )",
                                   style:
                                       const TextStyle(color: AppColors.black),
                                 ),

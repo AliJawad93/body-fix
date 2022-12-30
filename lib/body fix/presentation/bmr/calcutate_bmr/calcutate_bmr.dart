@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:body_fix2/body%20fix/controller/calculate_bmr_controller.dart';
 import 'package:body_fix2/body%20fix/core/utils/colors.dart';
-import 'package:body_fix2/body%20fix/core/utils/string.dart';
 import 'package:body_fix2/body%20fix/presentation/bmr/calcutate_bmr/widgets/custom_card_F_and_M.dart';
 import 'package:body_fix2/body%20fix/presentation/bmr/calcutate_bmr/widgets/custom_card_calculation.dart';
 import 'package:body_fix2/body%20fix/presentation/home/home.dart';
@@ -11,6 +10,8 @@ import 'package:body_fix2/body%20fix/presentation/widgets/custom_container.dart'
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../services/shareprefs_keys.dart';
 
 class CalculateBMR extends StatelessWidget {
   const CalculateBMR({super.key});
@@ -122,13 +123,13 @@ class CalculateBMR extends StatelessWidget {
                       }
 
                       await controller.setPrefsDouble(
-                          AppString.titleCalories, BMR);
+                          SharePrefsKeys.calories, BMR);
                       await controller.setPrefsDouble(
-                          AppString.titleFat, BMR * 0.3);
+                          SharePrefsKeys.fat, BMR * 0.3);
                       await controller.setPrefsDouble(
-                          AppString.titleProtein, BMR * 0.4);
+                          SharePrefsKeys.protein, BMR * 0.4);
                       await controller.setPrefsDouble(
-                          AppString.titleCarbs, BMR * 0.3);
+                          SharePrefsKeys.carbs, BMR * 0.3);
                       controller.onInitPrefs();
                       Get.offAll(() => Home());
                     },

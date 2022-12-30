@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
-  TextEditingController _confirmPassword = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  bool _isloading = false;
   bool _visibility = false;
 
   void changeVisibility() {
@@ -12,7 +12,13 @@ class LoginController extends GetxController {
     update();
   }
 
+  void changeIsloading(bool status) {
+    _isloading = status;
+    update();
+  }
+
   TextEditingController get getEmail => _email;
   TextEditingController get getPassword => _password;
   bool get getVisibility => _visibility;
+  bool get getIsloading => _isloading;
 }

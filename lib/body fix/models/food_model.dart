@@ -4,10 +4,10 @@ class FoodModel {
   String title;
   String type;
   String urlImage;
-  double calories;
-  double fat;
-  double carbs;
-  double protein;
+  String calories;
+  String fat;
+  String carbs;
+  String protein;
   FoodModel({
     required this.title,
     required this.type,
@@ -35,10 +35,10 @@ class FoodModel {
       title: map['title'] ?? '',
       type: map['type'] ?? '',
       urlImage: map['urlImage'] ?? '',
-      calories: map['calories']?.toDouble() ?? 0.0,
-      fat: map['fat']?.toDouble() ?? 0.0,
-      carbs: map['carbs']?.toDouble() ?? 0.0,
-      protein: map['protein']?.toDouble() ?? 0.0,
+      calories: map['calories'] ?? '',
+      fat: map['fat'] ?? '',
+      carbs: map['carbs'] ?? '',
+      protein: map['protein'] ?? '',
     );
   }
 }

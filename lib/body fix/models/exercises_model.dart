@@ -1,11 +1,9 @@
-import 'dart:convert';
-
 class ExercisesModel {
   String title;
   String type;
   String urlImage;
   double calories;
-  int time;
+  String time;
   ExercisesModel({
     required this.title,
     required this.type,
@@ -29,8 +27,8 @@ class ExercisesModel {
       title: map['title'] ?? '',
       type: map['type'] ?? '',
       urlImage: map['urlImage'] ?? '',
-      calories: map['calories']?.toDouble() ?? 0.0,
-      time: map['time']?.toInt() ?? 0,
+      calories: map['calories'] ?? "",
+      time: map['time'] ?? "",
     );
   }
 }

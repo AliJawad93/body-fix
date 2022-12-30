@@ -6,9 +6,14 @@ class SignUpController extends GetxController {
   TextEditingController _password = TextEditingController();
   TextEditingController _confirmPassword = TextEditingController();
   bool _visibility = false;
-
+  bool _isloading = false;
   void changeVisibility() {
     _visibility = !getVisibility;
+    update();
+  }
+
+  void changeIsloading(bool status) {
+    _isloading = status;
     update();
   }
 
@@ -24,4 +29,5 @@ class SignUpController extends GetxController {
   TextEditingController get getPassword => _password;
   TextEditingController get getConfirmPassword => _confirmPassword;
   bool get getVisibility => _visibility;
+  bool get getIsloading => _isloading;
 }

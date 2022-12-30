@@ -12,5 +12,11 @@ class AppImagePath {
   static const String protein = "$_path/protein.png";
   static const String starch = "$_path/starch.png";
   static const String fat = "$_path/fat.png";
+  static const String search = "$_path/search.svg";
+  static const String noData = "$_path/no_data.svg";
+  static const String forgotPassword = "$_path/forgot_password.svg";
+  static const String confirmationLogin = "$_path/confirmation_login.svg";
   static const String manSad = "$_path/man_sad.json";
+  static const String bg = "$_path/bg.png";
+  static const String loading = "$_path/loading.json";
 }

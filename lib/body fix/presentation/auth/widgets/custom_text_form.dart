@@ -6,28 +6,35 @@ import '../../widgets/custom_container.dart';
 
 class CustomTextForm extends StatelessWidget {
   String hintText;
-  TextEditingController controller;
+  TextEditingController? controller;
+
   bool obscureText;
   void Function()? onPressedSuffixIcon;
+  void Function(String)? onChanged;
   bool showVisibilityIcon;
   Widget? prefixIcon;
+  Color? backgroundColor;
   CustomTextForm({
     Key? key,
     required this.hintText,
-    required this.controller,
+    this.controller,
+    this.onChanged,
     this.obscureText = false,
     this.onPressedSuffixIcon,
     this.showVisibilityIcon = false,
     this.prefixIcon,
+    this.backgroundColor,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
       borderRadius: 10,
       margin: const EdgeInsets.symmetric(vertical: 10),
+      color: backgroundColor,
       child: TextFormField(
         controller: controller,
         obscureText: obscureText,
+        onChanged: onChanged,
         decoration: InputDecoration(
             prefixIcon: prefixIcon,
             hintText: hintText,

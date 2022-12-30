@@ -1,4 +1,5 @@
 import 'package:body_fix2/body%20fix/core/utils/images_path.dart';
+import 'package:body_fix2/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,10 +9,11 @@ import 'widgets/custom_bottom_navig_bar.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
-  final MainPageController controller = Get.put(MainPageController());
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MainPageController>(
+      init: MainPageController(),
       builder: (controller) {
         return Scaffold(
           backgroundColor: AppColors.white,

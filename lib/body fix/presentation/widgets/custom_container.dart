@@ -10,6 +10,7 @@ class CustomContainer extends StatelessWidget {
   Widget child;
   double borderRadius;
   AlignmentGeometry? alignment;
+  Color? color;
   CustomContainer({
     Key? key,
     this.height,
@@ -17,6 +18,7 @@ class CustomContainer extends StatelessWidget {
     this.alignment,
     this.padding,
     this.margin,
+    this.color,
     required this.child,
     this.borderRadius = 0,
   }) : super(key: key);
@@ -30,7 +32,7 @@ class CustomContainer extends StatelessWidget {
       margin: margin,
       alignment: alignment,
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: color ?? AppColors.white,
         borderRadius: BorderRadius.circular(borderRadius),
         boxShadow: [
           BoxShadow(

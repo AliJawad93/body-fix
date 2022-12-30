@@ -1,3 +1,10 @@
+import 'package:body_fix2/body%20fix/data/auth.dart';
+import 'package:body_fix2/body%20fix/data/firebase_storage.dart';
+import 'package:body_fix2/body%20fix/data/user_info.dart';
+import 'package:body_fix2/body%20fix/models/user_model.dart';
+import 'package:body_fix2/body%20fix/presentation/home/home.dart';
+import 'package:body_fix2/body%20fix/services/user_role.dart';
+import 'package:body_fix2/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -60,7 +67,30 @@ class CustomFormSetInfoProfile extends StatelessWidget {
             height: Get.height * 0.03,
           ),
           CustomElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                try {
+                  setInfoProfileController.changeIsloading(true);
+                  String id = FirebaseAuthentication.getInfoAuthUser.uid;
+                  String email = FirebaseAuthentication.getInfoAuthUser.email!;
+                  String? urlImage = await FirebaseStorageFiles.uploadImage(
+                      setInfoProfileController.getPlatformFile);
+                  UserModel userModel = UserModel(
+                    id: id,
+                    name: setInfoProfileController.getNameController.text,
+                    email: email,
+                    birthDay: setInfoProfileController.getBirthday!,
+                    urlImage: urlImage,
+                    userRole: UserRole.user,
+                  );
+
+                  FirebaseUserInfo.sendDataUser(userModel);
+                  setInfoProfileController.changeIsloading(false);
+
+                  Get.offAll(Home());
+                } catch (e) {
+                  print(e);
+                }
+              },
               child: const Text(AppString.textButtonSetInfoProfile))
         ],
       ),

@@ -1,105 +1,95 @@
 import 'dart:math';
 
-import 'package:body_fix2/body%20fix/controller/Exercises_controller.dart';
 import 'package:body_fix2/body%20fix/core/utils/colors.dart';
+import 'package:body_fix2/body%20fix/data/firebase_exercises.dart';
 import 'package:body_fix2/body%20fix/models/exercises_model.dart';
 import 'package:body_fix2/body%20fix/presentation/exercises/admin/add_exercises.dart';
 import 'package:body_fix2/body%20fix/presentation/exercises/user/widgets/card_exercises.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_body_cont.dart';
+import 'package:body_fix2/body%20fix/services/shareprefs_keys.dart';
+import 'package:body_fix2/body%20fix/services/user_role.dart';
+import 'package:body_fix2/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+
+import '../../../core/utils/images_path.dart';
+import '../../search/search.dart';
 
 class Exercises extends StatelessWidget {
   Exercises({Key? key}) : super(key: key);
-  List m = [
-    "All",
-    "Leg",
-    "Arm",
-    "Helthy Exercises",
-    "Helthy Exercises",
-    "Helthy Exercises",
-    "Helthy Exercises"
-  ];
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
         appBar: AppBar(
           title: const Text("Exercises"),
-          leading: IconButton(
-              onPressed: () {
-                Get.to(() => AddExercises());
-              },
-              icon: Icon(Icons.add)),
+          leading: prefs.getInt(SharePrefsKeys.userRole) == UserRole.admin
+              ? IconButton(
+                  onPressed: () {
+                    Get.to(() => const AddExercises());
+                  },
+                  icon: const Icon(Icons.add))
+              : const SizedBox(),
           actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+            IconButton(
+                onPressed: () {
+                  Get.to(() => Search(
+                        searchByFood: false,
+                      ));
+                },
+                icon: const Icon(Icons.search))
           ],
         ),
         body: Padding(
-          padding: EdgeInsets.all(sqrt(Get.height + Get.width) * 0.3),
-          child: GetBuilder<ExercisesController>(
-              init: ExercisesController(),
-              builder: (ExercisesController) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: Get.height * 0.1,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: m.length,
-                        itemBuilder: (cxt, index) {
-                          return Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 3),
-                            child: ChoiceChip(
-                              selected:
-                                  ExercisesController.getSelectedIndex == index,
-                              label: Text(m[index]),
-                              selectedColor: AppColors.primary,
-                              labelStyle: TextStyle(
-                                  color: ExercisesController.getSelectedIndex ==
-                                          index
-                                      ? AppColors.white
-                                      : AppColors.darkGray),
-                              backgroundColor: AppColors.white,
-                              shape:
-                                  ExercisesController.getSelectedIndex == index
-                                      ? null
-                                      : StadiumBorder(
-                                          side: BorderSide(
-                                              color: AppColors.lightGray)),
-                              onSelected: (selected) {
-                                if (selected) {
-                                  ExercisesController.setSelectedIndex(index);
-                                }
-                              },
+            padding: EdgeInsets.all(sqrt(Get.height + Get.width) * 0.3),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Exercisess",
+                  style: TextStyle(color: AppColors.black, fontSize: 23),
+                ),
+                StreamBuilder<List<ExercisesModel>>(
+                    stream: FirebaseExercises.getDataExercises(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+
+                      if (snapshot.data!.isEmpty) {
+                        return SizedBox(
+                          height: Get.height * 0.6,
+                          width: Get.width,
+                          child: Align(
+                            child: SvgPicture.asset(
+                              AppImagePath.noData,
+                              width: sqrt(Get.width + Get.height) * 4,
                             ),
-                          );
-                        },
-                      ),
-                    ),
-                    const Text(
-                      "Exercisess",
-                      style: TextStyle(color: AppColors.black, fontSize: 23),
-                    ),
-                    CardExercises(
-                      exercisesModel: ExercisesModel(
-                          title: "Running",
-                          type: "leg",
-                          urlImage: "",
-                          calories: 123,
-                          time: 12),
-                    ),
-                    CardExercises(
-                      exercisesModel: ExercisesModel(
-                          title: "Running",
-                          type: "leg",
-                          urlImage: "",
-                          calories: 123,
-                          time: 12),
-                    ),
-                  ],
-                );
-              }),
-        ));
+                          ),
+                        );
+                      }
+                      return Expanded(
+                        child: SingleChildScrollView(
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (context, index) {
+                                ExercisesModel exercisesModel = ExercisesModel(
+                                    title: snapshot.data![index].title,
+                                    type: snapshot.data![index].type,
+                                    urlImage: snapshot.data![index].urlImage,
+                                    calories: snapshot.data![index].calories,
+                                    time: snapshot.data![index].time);
+                                return CardExercises(
+                                  exercisesModel: exercisesModel,
+                                );
+                              }),
+                        ),
+                      );
+                    }),
+              ],
+            )));
   }
 }
