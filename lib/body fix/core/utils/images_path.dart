@@ -1,9 +1,9 @@
 class AppImagePath {
   static const String _path = "lib/assets/images";
-  static const String background = "$_path/background.svg";
-  static const String onBoarding1 = "$_path/onboarding1.svg";
-  static const String onBoarding2 = "$_path/onboarding2.svg";
-  static const String onBoarding3 = "$_path/onboarding3.svg";
+  static const String background = "$_path/background.png";
+  static const String onBoarding1 = "$_path/onboarding1.png";
+  static const String onBoarding2 = "$_path/onboarding2.png";
+  static const String onBoarding3 = "$_path/onboarding3.png";
   static const String google = "$_path/google.svg";
   static const String facebook = "$_path/facebook.svg";
   static const String verify = "$_path/verify.svg";

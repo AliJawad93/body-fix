@@ -5,6 +5,7 @@ import 'package:body_fix2/body%20fix/presentation/loading/loading.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../services/general_services.dart';
 import 'login.dart';
 import 'signup.dart';
 import 'widgets/custom_signup_form_card.dart';
@@ -86,12 +87,20 @@ class _SignUpState extends State<SignUp> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomSocialMediaCard(
-                              onTap: () {},
+                              onTap: () {
+                                GeneralServices.snackBar(
+                                    title: "comming Soon",
+                                    message: "Under Development");
+                              },
                               path: AppImagePath.google,
                               title: "Google",
                             ),
                             CustomSocialMediaCard(
-                              onTap: () {},
+                              onTap: () {
+                                GeneralServices.snackBar(
+                                    title: "comming Soon",
+                                    message: "Under Development");
+                              },
                               path: AppImagePath.facebook,
                               title: "FackeBook",
                             ),

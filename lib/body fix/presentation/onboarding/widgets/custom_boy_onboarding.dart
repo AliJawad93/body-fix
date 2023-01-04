@@ -15,7 +15,7 @@ class CustomBodyOnboarding extends StatelessWidget {
       SizedBox(
         height: Get.height * 0.12,
       ),
-      SvgPicture.asset(
+      Image.asset(
         onboardingModel.imagePath,
       ),
       Padding(

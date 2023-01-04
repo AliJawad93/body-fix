@@ -5,10 +5,8 @@ import 'package:body_fix2/body%20fix/services/shareprefs_keys.dart';
 import 'package:body_fix2/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../data/auth.dart';
 import '../../../auth/widgets/custom_text_form.dart';
-import '../../../set_info_profile/widgets/custom_image_piker.dart';
 import '../../../widgets/custom_body_cont.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../confirm_login.dart';
@@ -27,7 +25,7 @@ class _ChangeEmailState extends State<ChangeEmail> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       appBar: AppBar(
-        title: Text("Change Email"),
+        title: const Text("Change Email"),
       ),
       body: Container(
         margin:
@@ -39,7 +37,7 @@ class _ChangeEmailState extends State<ChangeEmail> {
             CustomTextForm(
               controller: newEmail,
               hintText: 'New Email',
-              prefixIcon: Icon(Icons.person_outline),
+              prefixIcon: const Icon(Icons.person_outline),
             ),
             CustomElevatedButton(
                 onPressed: () {
@@ -56,7 +54,7 @@ class _ChangeEmailState extends State<ChangeEmail> {
                     }),
                   );
                 },
-                child: Text("Change"))
+                child: const Text("Change"))
           ],
         ),
       ),

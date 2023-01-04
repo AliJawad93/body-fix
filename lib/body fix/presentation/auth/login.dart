@@ -4,6 +4,7 @@ import 'package:body_fix2/body%20fix/core/utils/images_path.dart';
 import 'package:body_fix2/body%20fix/presentation/auth/widgets/custom_social_media_login_card.dart';
 import 'package:body_fix2/body%20fix/presentation/loading/loading.dart';
 import 'package:body_fix2/body%20fix/presentation/widgets/custom_container.dart';
+import 'package:body_fix2/body%20fix/services/general_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'signup.dart';
@@ -86,12 +87,20 @@ class _LoginState extends State<Login> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               CustomSocialMediaCard(
-                                onTap: () {},
+                                onTap: () {
+                                  GeneralServices.snackBar(
+                                      title: "comming Soon",
+                                      message: "Under Development");
+                                },
                                 path: AppImagePath.google,
                                 title: "Google",
                               ),
                               CustomSocialMediaCard(
-                                onTap: () {},
+                                onTap: () {
+                                  GeneralServices.snackBar(
+                                      title: "comming Soon",
+                                      message: "Under Development");
+                                },
                                 path: AppImagePath.facebook,
                                 title: "FackeBook",
                               ),
