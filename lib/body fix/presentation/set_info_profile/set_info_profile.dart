@@ -10,6 +10,8 @@ import 'package:body_fix2/body%20fix/presentation/widgets/custom_elevated_button
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/utils/images_path.dart';
+
 class SetInfoProfile extends StatelessWidget {
   SetInfoProfile({Key? key}) : super(key: key);
   SetInfoProfileController setInfoProfileController =
@@ -26,16 +28,38 @@ class SetInfoProfile extends StatelessWidget {
                 return const Loading();
               }
 
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              return Stack(
                 children: [
-                  CustomImagePikker(),
-                  SizedBox(
-                    height: Get.height * 0.08,
+                  Container(
+                    height: Get.height,
+                    width: Get.width,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: FractionalOffset.topCenter,
+                        end: FractionalOffset.bottomCenter,
+                        colors: [
+                          AppColors.primary,
+                          AppColors.blue,
+                        ],
+                      ),
+                      image: DecorationImage(
+                        image: AssetImage(AppImagePath.bg),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
                   ),
-                  CustomFormSetInfoProfile(),
-                  SizedBox(
-                    height: Get.height * 0.1,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomImagePikker(),
+                      SizedBox(
+                        height: Get.height * 0.08,
+                      ),
+                      CustomFormSetInfoProfile(),
+                      SizedBox(
+                        height: Get.height * 0.1,
+                      ),
+                    ],
                   ),
                 ],
               );

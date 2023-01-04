@@ -7,6 +7,7 @@ import 'package:body_fix2/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../services/general_services.dart';
 import '../../../auth/widgets/custom_text_form.dart';
 import '../../../set_info_profile/widgets/custom_image_piker.dart';
 import '../../../widgets/custom_body_cont.dart';
@@ -45,10 +46,17 @@ class _ChangeNameState extends State<ChangeName> {
                 onPressed: () {
                   Get.to(() => ConfirmLogin(
                         changeFunction: () async {
-                          await FirebaseUserInfo.updateVarable(
-                              id: prefs.getString(SharePrefsKeys.id) ?? "",
-                              key: "name",
-                              value: name.text);
+                          try {
+                            await FirebaseUserInfo.updateVarable(
+                                id: prefs.getString(SharePrefsKeys.id) ?? "",
+                                key: "name",
+                                value: name.text);
+
+                            prefs.setString(SharePrefsKeys.name, name.text);
+                          } catch (e) {
+                            GeneralServices.snackBar(
+                                title: "Error", message: e.toString());
+                          }
                         },
                       ));
                 },

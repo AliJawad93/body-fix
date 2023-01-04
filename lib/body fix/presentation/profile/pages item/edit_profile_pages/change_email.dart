@@ -1,5 +1,8 @@
 import 'dart:math';
 
+import 'package:body_fix2/body%20fix/services/general_services.dart';
+import 'package:body_fix2/body%20fix/services/shareprefs_keys.dart';
+import 'package:body_fix2/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,10 +43,18 @@ class _ChangeEmailState extends State<ChangeEmail> {
             ),
             CustomElevatedButton(
                 onPressed: () {
-                  Get.to(() => ConfirmLogin(changeFunction: () async {
+                  Get.to(
+                    () => ConfirmLogin(changeFunction: () async {
+                      try {
                         await FirebaseAuthentication.updateEmail(
                             newEmail: newEmail.text);
-                      }));
+                        prefs.setString(SharePrefsKeys.email, newEmail.text);
+                      } catch (e) {
+                        GeneralServices.snackBar(
+                            title: "Error", message: e.toString());
+                      }
+                    }),
+                  );
                 },
                 child: Text("Change"))
           ],

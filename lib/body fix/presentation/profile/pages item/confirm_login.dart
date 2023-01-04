@@ -66,8 +66,7 @@ class _ConfirmLoginState extends State<ConfirmLogin> {
                             setState(() {
                               isLoading = false;
                             });
-                            Get.snackbar("Unsuccess",
-                                "Please make sure Email and Password is correct");
+
                             return;
                           }
 

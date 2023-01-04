@@ -32,35 +32,35 @@ class CustomFormSetInfoProfile extends StatelessWidget {
               hintText: AppString.hintTextFormName,
               controller: setInfoProfileController.getNameController,
               prefixIcon: const Icon(Icons.person)),
-          CustomContainer(
-            height: Get.height * 0.08,
-            padding: const EdgeInsets.all(10),
-            borderRadius: 5,
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.calendar_month,
-                  color: AppColors.darkGray,
-                ),
-                GetBuilder<SetInfoProfileController>(builder: (context) {
-                  return Text(
-                    setInfoProfileController.getBirthday == null
-                        ? AppString.hintTextFormBirthday
-                        : setInfoProfileController.getBirthday!,
-                    style: const TextStyle(color: AppColors.darkGray),
-                  );
-                }),
-                const Spacer(),
-                IconButton(
-                  onPressed: () {
-                    setInfoProfileController.showCalender(context);
-                  },
-                  icon: const Icon(
+          InkWell(
+            onTap: () {
+              setInfoProfileController.showCalender(context);
+            },
+            child: CustomContainer(
+              height: Get.height * 0.08,
+              padding: const EdgeInsets.all(10),
+              borderRadius: 5,
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.calendar_month,
+                    color: AppColors.darkGray,
+                  ),
+                  GetBuilder<SetInfoProfileController>(builder: (context) {
+                    return Text(
+                      setInfoProfileController.getBirthday == null
+                          ? AppString.hintTextFormBirthday
+                          : setInfoProfileController.getBirthday!,
+                      style: const TextStyle(color: AppColors.darkGray),
+                    );
+                  }),
+                  const Spacer(),
+                  const Icon(
                     Icons.add,
                     color: AppColors.primary,
                   ),
-                )
-              ],
+                ],
+              ),
             ),
           ),
           SizedBox(
