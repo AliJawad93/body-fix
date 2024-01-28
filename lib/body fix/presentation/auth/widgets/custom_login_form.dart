@@ -65,9 +65,10 @@ class CustomLoginFormCard extends StatelessWidget {
                   loginController.changeIsloading(false);
                   Get.offAll(() => Home());
                 } catch (e) {
-                  Get.snackbar('Error', e.toString(),
-                      backgroundColor: AppColors.white);
-                  print(e.toString());
+                  loginController.changeIsloading(false);
+
+                  Get.snackbar('Error', "there is some thing is wrong",
+                      backgroundColor: Colors.red);
                 }
               },
               child: const Text("Login"))

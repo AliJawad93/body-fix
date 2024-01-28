@@ -23,7 +23,7 @@ class CustomCardAnalysisCalories extends StatelessWidget {
         height: sqrt(Get.width + Get.height) * 4,
         width: sqrt(Get.width + Get.height) * 4,
         borderRadius: 10,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -32,6 +32,7 @@ class CustomCardAnalysisCalories extends StatelessWidget {
               child: Image.asset(
                 imagePath,
                 width: 50,
+                color: AppColors.primary,
               ),
             ),
             SizedBox(

@@ -72,27 +72,23 @@ class _SearchState extends State<Search> {
                         ],
                       ));
                     }
-                    return SingleChildScrollView(
-                      child: SizedBox(
-                        height: Get.height * 0.755,
-                        width: Get.width,
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: snapshot.data!.length,
-                            itemBuilder: (context, index) {
-                              return CardFood(
-                                foodModel: FoodModel(
-                                  title: snapshot.data![index].title,
-                                  type: snapshot.data![index].type,
-                                  urlImage: snapshot.data![index].urlImage,
-                                  calories: snapshot.data![index].calories,
-                                  fat: snapshot.data![index].fat,
-                                  carbs: snapshot.data![index].carbs,
-                                  protein: snapshot.data![index].protein,
-                                ),
-                              );
-                            }),
-                      ),
+                    return Expanded(
+                      child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) {
+                            return CardFood(
+                              foodModel: FoodModel(
+                                title: snapshot.data![index].title,
+                                type: snapshot.data![index].type,
+                                urlImage: snapshot.data![index].urlImage,
+                                calories: snapshot.data![index].calories,
+                                fat: snapshot.data![index].fat,
+                                carbs: snapshot.data![index].carbs,
+                                protein: snapshot.data![index].protein,
+                              ),
+                            );
+                          }),
                     );
                   })
               : FutureBuilder<List<ExercisesModel>>(

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+
 import 'package:body_fix2/body%20fix/core/utils/colors.dart';
 import 'package:body_fix2/body%20fix/core/utils/images_path.dart';
 import 'package:body_fix2/body%20fix/presentation/auth/widgets/custom_text_form.dart';
@@ -17,7 +18,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Steps extends StatefulWidget {
-  Steps({super.key});
+  const Steps({super.key});
 
   @override
   State<Steps> createState() => _StepsState();
@@ -73,7 +74,7 @@ class _StepsState extends State<Steps> {
         title: const Text("Steps Count"),
         actions: [
           isPermissioned == false
-              ? SizedBox()
+              ? const SizedBox()
               : IconButton(
                   onPressed: () {
                     Get.defaultDialog(
@@ -83,11 +84,15 @@ class _StepsState extends State<Steps> {
                       contentPadding: const EdgeInsets.all(20),
                       confirm: CustomElevatedButton(
                           onPressed: () async {
+                            int g = int.parse(textGoal.text);
+                            if (g < 0) {
+                              return;
+                            }
+                            goal = g;
                             final prefs = await SharedPreferences.getInstance();
 
                             prefs.setInt(
                                 SharePrefsKeys.goal, int.parse(textGoal.text));
-                            goal = int.parse(textGoal.text);
                             setState(() {});
                             Get.back();
                           },
@@ -105,7 +110,7 @@ class _StepsState extends State<Steps> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Lottie.asset(AppImagePath.manSad, width: Get.width * 0.3),
-                  Text(
+                  const Text(
                     "No permission for steps count",
                     style: TextStyle(color: AppColors.black),
                   ),
@@ -166,7 +171,7 @@ class _StepsState extends State<Steps> {
                                   color: AppColors.primary,
                                 ),
                                 Text(
-                                  " ${goal} ( steps: ${_steps} )",
+                                  " $goal ( steps: $_steps )",
                                   style:
                                       const TextStyle(color: AppColors.black),
                                 ),
@@ -179,14 +184,15 @@ class _StepsState extends State<Steps> {
                                 sqrt(Get.height + Get.width) * 0.6),
                             child: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.local_fire_department_outlined,
                                   size: 40,
                                   color: AppColors.primary,
                                 ),
                                 Text(
                                   " Burn Calories: ${_steps * 0.04}",
-                                  style: TextStyle(color: AppColors.black),
+                                  style:
+                                      const TextStyle(color: AppColors.black),
                                 ),
                               ],
                             ),

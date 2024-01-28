@@ -17,7 +17,7 @@ import '../../../core/utils/images_path.dart';
 import '../../search/search.dart';
 
 class Exercises extends StatelessWidget {
-  Exercises({Key? key}) : super(key: key);
+  const Exercises({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,54 +42,42 @@ class Exercises extends StatelessWidget {
           ],
         ),
         body: Padding(
-            padding: EdgeInsets.all(sqrt(Get.height + Get.width) * 0.3),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Exercisess",
-                  style: TextStyle(color: AppColors.black, fontSize: 23),
-                ),
-                StreamBuilder<List<ExercisesModel>>(
-                    stream: FirebaseExercises.getDataExercises(),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
+            padding: EdgeInsets.all(sqrt(Get.height + Get.width) * 0.3).copyWith(bottom: 0),
+            child: StreamBuilder<List<ExercisesModel>>(
+                stream: FirebaseExercises.getDataExercises(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
 
-                      if (snapshot.data!.isEmpty) {
-                        return SizedBox(
-                          height: Get.height * 0.6,
-                          width: Get.width,
-                          child: Align(
-                            child: SvgPicture.asset(
-                              AppImagePath.noData,
-                              width: sqrt(Get.width + Get.height) * 4,
-                            ),
-                          ),
-                        );
-                      }
-                      return Expanded(
-                        child: SingleChildScrollView(
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: snapshot.data!.length,
-                              itemBuilder: (context, index) {
-                                ExercisesModel exercisesModel = ExercisesModel(
-                                    title: snapshot.data![index].title,
-                                    type: snapshot.data![index].type,
-                                    urlImage: snapshot.data![index].urlImage,
-                                    calories: snapshot.data![index].calories,
-                                    time: snapshot.data![index].time);
-                                return CardExercises(
-                                  exercisesModel: exercisesModel,
-                                );
-                              }),
+                  if (snapshot.data!.isEmpty) {
+                    return SizedBox(
+                      height: Get.height * 0.6,
+                      width: Get.width,
+                      child: Align(
+                        child: SvgPicture.asset(
+                          AppImagePath.noData,
+                          width: sqrt(Get.width + Get.height) * 4,
                         ),
-                      );
-                    }),
-              ],
-            )));
+                      ),
+                    );
+                  }
+                  return Expanded(
+                    child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          ExercisesModel exercisesModel = ExercisesModel(
+                              title: snapshot.data![index].title,
+                              type: snapshot.data![index].type,
+                              urlImage: snapshot.data![index].urlImage,
+                              calories: snapshot.data![index].calories,
+                              time: snapshot.data![index].time);
+                          return CardExercises(
+                            exercisesModel: exercisesModel,
+                          );
+                        }),
+                  );
+                })));
   }
 }

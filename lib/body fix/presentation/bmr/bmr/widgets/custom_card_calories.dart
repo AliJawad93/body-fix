@@ -19,13 +19,14 @@ class CustomCardCalories extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
         height: Get.height * 0.16,
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         borderRadius: 10,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Image.asset(
               imagePath,
+              color: AppColors.primary,
               width: 60,
             ),
             Column(
